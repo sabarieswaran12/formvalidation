@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRATION FORM</title>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+
+<script>
+function validateForm()
+{
+   var p1=document.form1.v1.value;
+   var p2=document.form1.v2.value;
+  var name=document.form1.n1.value;
+  var u1=document.form1.user.value;
+   if(name==null || name==""){
+    alert("Firstname can't be empty");
+       return false;
+ 
+   }
+   var m=isNaN(name)
+   if(m==false)
+   {
+    alert("Name can't be a number");
+    return false;
+   }
+   if(u1==null || u1==""){
+    alert("Username can't be empty");
+    return false;
+   }
+   var atposition=u1.indexOf("@");
+   var dotposition=u1.lastIndexOf(".");
+   if (atposition<1 || dotposition<atposition+2 || dotposition+2>=u1.length){
+alert("Please enter a valid e-mail address \n atpostion:" +atposition+ "\n dotposition:"+dotposition);
+return false;
+}
+if(p1==null || p1==""){
+    alert("Password can't be empty");
+    return false;
+}
+if(p2==null || p2==""){
+    alert("Password can't be empty");
+    return false;
+}
+
+if(p1!=null && p2!=null){
+
+    if(p1==p2){
+     
+         return true;
+   }
+   else{
+    alert("Password must be same!!")
+     return false;
+   }
+   
+}
+}
+function myFunction() {
+  var x = document.getElementById("v1");
+  var y = document.getElementById("v2");
+  if (x.type === "password" || y.type==="password") {
+    x.type = "text";
+    y.type="text";
+  } else {
+    x.type = "password";
+    y.type="password";
+  }
+}
+function strenghtValidate(){
+        p3=document.form1.v1.value;
+        if(p3.length<=6){
+           var m= document.getElementById("strength")
+           m.innerHTML="Password is weak";
+           m.style.color="red"
+        }
+        else if(p3.length>6){
+
+            if(p3.match(/[a-z]/g).length>1 && p3.match(/[0-9]/gi).length>2){
+                var n= document.getElementById("strength")
+           n.innerHTML="Password is medium";
+           n.style.color="orange"
+        }
+            if(p3.match(/[a-z]/g).length>2 && p3.match(/[A-Z]/g).length>2 &&  p3.match(/[0-9]/g).length>2){
+                var u= document.getElementById("strength")
+           u.innerHTML="Password is strong";
+           u.style.color="green"
+            }
+            }
+        }
+
+        window.onload = fadeIn;
+ 
+  function fadeIn() {
+      var fade = document.getElementById("body");
+      var opacity = 0;
+      var intervalID = setInterval(function() {
+
+          if (opacity < 1) {
+              opacity = opacity + 0.1
+              fade.style.opacity = opacity;
+          } else {
+              clearInterval(intervalID);
+          }
+      }, 200);
+  }
+
+</script>
+<body class="body" id="body" onload="fadeIn()">
+
+    <section class="grid-container">
+ 
+        <br>
+        <br>
+        <section class="grid-element">
+            <img src="google.jpg" alt=""height="100px" width="100px" class="img">
+            <form name="form1" action="http://www.javatpoint.com/javascriptpages/valid.jsp"  onsubmit="return validateForm()" method="post">
+                <div class="heading" id="heading">Create your Google Account</div>
+                <br>
+                <br>
+               <div class="name"> <input type="text" placeholder="First name" name="n1"> &nbsp;
+                <input type="text" placeholder="Last name">
+            </div>
+            <!-- <iframe src="" frameborder="0"></iframe> -->
+                <br>
+               
+                <input type="text" placeholder="Username" name="user" >
+                       <br>
+                <span id="email">You can use letters,numbers & periods</span>
+                <br>
+                <br>
+                <button class="bt">Use my current email address instead</button>
+                <br>              
+                <br>
+                <input type="password" placeholder="Password" name="v1" id="v1" oninput="strenghtValidate()" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,16}"> &nbsp;
+                <input type="password" placeholder="Confirm" name="v2" id="v2">
+                <br>    
+                <p id="strength"></p>      
+                <p id="notify">Use 8 or more characters with a mix of letters,numbers &<br> symbols<p>
+                <input type="checkbox" class="check"  onclick="myFunction()">
+                <span onmouseover="style.color='red'" onmouseout="style.color='black'">Show password</span>
+                <br>
+                <button id="signin">Sign in instead</button>
+                <input type="submit" value="next" class="next">
+            </form>
+        </section>
+        <h2 onclick="this.innerHTML=Date()" onmouseover="this.innerHTML='ENTER!!'" onmouseout="this.innerHTML='CLICK!!'"  >click</h2>
+           
+    </section>
+   
+</body>
+
+</html>
+
